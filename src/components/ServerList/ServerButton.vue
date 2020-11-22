@@ -2,8 +2,10 @@
   <div 
     class="server__button"
     :class="{'server__button-hasNotification': hasNotification, 'server__button-isHome': isHome}">
-
+    <img src="../../assets/logo.svg" v-if="isHome">
+    <div class="mentions" v-if="mentions">{{ mentions }}</div>
   </div>
+  
 </template>
 
 <script>
@@ -12,7 +14,7 @@ export default {
         selected: Boolean,
         isHome: Boolean,
         hasNotification: Boolean,
-        mention: Number
+        mentions: Number
     }
 }
 </script>
@@ -32,11 +34,33 @@ export default {
   border-radius: 50%;
   transition: 0.2s;
 
+img {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+}
+
   &.active,
   &:hover {
       border-radius: 16px;
       background-color: var(--discord);
   }
+}
+
+.mentions {
+    background-color: var(--notification);
+    width: auto;
+    height: 24px;
+    padding: 0 4px;
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    border-radius: 12px;
+    border: solid 4px var(--quaternary);
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--white);
 }
 
 .server__button-isHome {
